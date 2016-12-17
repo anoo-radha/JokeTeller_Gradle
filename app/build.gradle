@@ -25,7 +25,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
+    androidTestCompile('com.android.support.test:runner:0.4', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     //Add android displayjoke library
     compile project(':displayjoke')
     compile 'com.android.support:appcompat-v7:25.1.0'
