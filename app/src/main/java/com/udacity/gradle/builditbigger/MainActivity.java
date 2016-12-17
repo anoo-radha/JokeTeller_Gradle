@@ -40,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
         new EndpointsAsyncTask().execute(this);
-//        Intent intent = new Intent(this, DisplayJoke.class);
-//        String joke_from_jokefactory = new JokeFactory().JokeTeller();
-//        intent.putExtra(DisplayJoke.JOKE_KEY, joke_from_jokefactory);
-//        startActivity(intent);
 
 //        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
     }
