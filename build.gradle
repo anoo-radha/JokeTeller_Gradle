@@ -16,4 +16,18 @@ allprojects {
     repositories {
         jcenter()
     }
+
+    //Configure Test Task
+    task gcedaemonandtest (dependsOn: [":backend:appengineRun", ":app:connectedAndroidTest"]){
+        evaluationDependsOn ":backend"
+        project(":backend"){
+            appengine{
+                daemon true
+            }
+        }
+        finalizedBy ":backend:appengineStop"
+        doLast {
+            println 'gcedaemonandtest completed'
+        }
+    }
 }

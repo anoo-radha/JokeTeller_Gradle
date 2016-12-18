@@ -16,21 +16,23 @@ public class MainActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
     InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().
-                add(R.id.fragment,new MainActivityFragment()).commit();
+                add(R.id.fragment, new MainActivityFragment()).commit();
+        //loading indicator is shown while the joke is being retrieved
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        //InterstitialAd is shown before the joke is shown. (only in free version)
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
 
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
                 requestNewInterstitial();
-//                new EndpointsAsyncTask(progressBar).execute(this);
                 startJokeTask();
             }
         });
@@ -74,11 +76,10 @@ public class MainActivity extends AppCompatActivity {
             mInterstitialAd.show();
         } else {
             startJokeTask();
-//            new EndpointsAsyncTask(progressBar).execute(this);
         }
-//        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
     }
 
+    /* kick off a Asynctask to retrieve a joke */
     public void startJokeTask() {
         new EndpointsAsyncTask(progressBar).execute(this);
     }

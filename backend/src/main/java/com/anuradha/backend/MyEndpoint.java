@@ -26,21 +26,11 @@ import com.google.api.server.spi.config.ApiNamespace;
 public class MyEndpoint {
 
     /**
-     * A endpoint method that returns a joke form jokefactory-java library
+     * A Google Cloud endpoint method that returns a joke form jokefactory-java library
      */
 
-    /**
-     * A simple endpoint method that takes a name and says Hi back
-     */
-//    @ApiMethod(name = "sayHi")
-//    public MyBean sayHi(@Named("name") String name) {
-//        MyBean response = new MyBean();
-//        response.setData("Hi, " + name);
-//
-//        return response;
-//    }
     @ApiMethod(name = "getAJoke")
-    public MyBean getAJoke(){
+    public MyBean getAJoke() {
         MyBean response = new MyBean();
         String joke = new JokeFactory().JokeTeller();
         response.setData(joke);

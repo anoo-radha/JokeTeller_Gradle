@@ -11,12 +11,14 @@ import android.widget.ProgressBar;
 public class MainActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().
-                add(R.id.fragment,new MainActivityFragment()).commit();
+                add(R.id.fragment, new MainActivityFragment()).commit();
+        //loading indicator is shown while the joke is being retrieved
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
     }
 
@@ -45,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
         new EndpointsAsyncTask(progressBar).execute(this);
-
-//        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
     }
 
 
