@@ -5,14 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportFragmentManager().beginTransaction().
+                add(R.id.fragment,new MainActivityFragment()).commit();
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
     }
 
 
@@ -39,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        new EndpointsAsyncTask().execute(this);
+        new EndpointsAsyncTask(progressBar).execute(this);
 
 //        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
     }

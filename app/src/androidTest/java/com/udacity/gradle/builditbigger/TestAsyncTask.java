@@ -13,7 +13,7 @@ public class TestAsyncTask extends AndroidTestCase{
         String joke = "";
         try {
             MainActivity mainActivity = new MainActivity();
-            EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask();
+            EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask(null);
             endpointsAsyncTask.execute(mainActivity);
             joke = endpointsAsyncTask.get(30, TimeUnit.SECONDS);
 

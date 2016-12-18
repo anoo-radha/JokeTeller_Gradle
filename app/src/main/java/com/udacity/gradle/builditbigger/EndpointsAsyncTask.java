@@ -3,6 +3,8 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.anuradha.backend.myApi.MyApi;
 import com.anuradha.displayjoke.DisplayJoke;
@@ -13,8 +15,20 @@ import java.io.IOException;
 
 class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     private static MyApi myApiService = null;
-    private Context context;
+    private Context mContext;
 
+    private ProgressBar mProgressBar;
+
+    EndpointsAsyncTask(ProgressBar progressBar) {
+        this.mProgressBar = progressBar;
+    }
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        if (mProgressBar != null) {
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+    }
     @Override
     protected String doInBackground(Context... params) {
         if(myApiService == null) {  // Only do this once
@@ -37,7 +51,7 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
             myApiService = builder.build();
         }
 
-        context = params[0];
+        mContext = params[0];
 //        context = params[0].first;
 //        String name = params[0].second;
 
@@ -50,11 +64,14 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Intent intent = new Intent(context, DisplayJoke.class);
+        if (mProgressBar != null) {
+            mProgressBar.setVisibility(View.GONE);
+        }
+        Intent intent = new Intent(mContext, DisplayJoke.class);
 //        String joke_from_jokefactory = new JokeFactory().JokeTeller();
 //        intent.putExtra(DisplayJoke.JOKE_KEY, joke_from_jokefactory);
         intent.putExtra(DisplayJoke.JOKE_KEY, result);
-        context.startActivity(intent);
+        mContext.startActivity(intent);
 //        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
     }
 }
