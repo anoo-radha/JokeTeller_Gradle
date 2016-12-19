@@ -110,6 +110,9 @@ To tie it all together, create a Gradle task that:
 Had some issues with deploying the GCE app engine.
 Used these command line instructions
 >gcloud beta app create
+
 and 
+
 >gcloud app deploy
+
 then the gce app engine was deployed.
