@@ -1,5 +1,12 @@
-# Gradle for Android and Java Final Project
+# Joke-telling app using Gradle for Android and Java
 
+## How to Use the Project
+Download the project or clone the project. Open it in android studio and build using freedebug or paiddebug build variant and run the app on a device/emulator.
+
+Jokes can be added/modified in the JokeFactory Java library.
+To add them to the local backend, choose backend as run configuration and Rebuild your project (via "Build → Rebuild Project") and launch this run configuration. It will invoke appengineRun task in Gradle plug-in for App Engine, which in turn will start the local App Engine Java development server.
+
+But to add them to GCE app engine, Run Build > Deploy Module to App Engine.
 In this project, you will create an app with multiple flavors that uses
 multiple libraries and Google Cloud Endpoints. The finished app will consist
 of four modules. A Java library that provides jokes, a Google Cloud Endpoints
@@ -7,15 +14,7 @@ of four modules. A Java library that provides jokes, a Google Cloud Endpoints
 activity for displaying jokes, and an Android app that fetches jokes from the
 GCE module and passes them to the Android Library for display.
 
-# How to Use the Project
-Download the project or clone the project. Open it in android studio and build using freedebug or paiddebug build variant and run the app.
-
-Jokes can be added/modified in the JokeFactory Java library.
-To add them to the local backend, choose backend as run configuration and Rebuild your project (via "Build → Rebuild Project") and launch this run configuration. It will invoke appengineRun task in Gradle plug-in for App Engine, which in turn will start the local App Engine Java development server.
-
-But to add them to GCE app engine, Run Build > Deploy Module to App Engine.
-
-##How Do I Complete this Project?
+## Steps to complete the Project from start
 
 ### Step 0: Starting Point
 
